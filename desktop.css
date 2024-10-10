@@ -1,0 +1,26 @@
+body {
+    font-size: 2vh;
+}
+select {
+    font-size: 2vh;
+    margin-bottom: 1vh;
+}
+.container {
+    padding: 2vw;
+    border-radius: 1vh;
+    width: 40vw;
+    margin-left: 28vw;
+    height: 40vh;
+    margin-top: 20vh;
+    margin-bottom: 2vh;
+}
+#level {
+    font-size: 2vh;
+}
+#level_number {
+    font-size: 16vh;
+    margin: 2vh 0;
+}
+p {
+    font-size: 3vh;
+}
