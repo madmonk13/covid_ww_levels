@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Covid19 Wastewater Levels</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            font-size: 2vh;
+            background-color: #666;
+        }
+        select {
+            font-size: 2vh;
+            text-align: center;
+            margin-bottom: 1vh;
+        }
+        .container {
+            padding: 2vh;
+            background-color: #fff;
+            border: 2px solid #000;
+            border-radius: 1vh;
+            width: 50vw;
+            margin-left: 25vw;
+            height: 50vw;
+            margin-top: 25vh;
+        }
+        .content {
+            max-width: 800px;
+            text-align: center;
+        }
+        #level {
+            border: none;
+            background-color: transparent;
+            font-size: 2vh;
+            display: inline-block;
+        }
+        #level_number {
+            display: block;
+            font-size: 10vh;
+            font-weight: bold;
+        }
+    </style>
+    <script>
+
+        var covidData;
+        var currentState;
+
+        function getLocation(){
+            if ( getURLString() != "" ){
+                return
+            }
+            let tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            console.log(tz);
+            let p = tz.split("/");
+            currentState = p[1].replace("_"," ");
+            console.log(currentState);
+        }
+
+        function getURLString(){
+            let url=document.location.toString();
+            let p = url.split("?");
+            if ( p[1] != "" ){
+                let s = p[1].split("=");
+                currentState = decodeURI(s[1]);
+            }
+        }
+
+
+        function fetchData() {
+            const url = 'https://www.cdc.gov/wcms/vizdata/NCEZID_DIDRI/NWSSStateMap.json'; // Replace with your API endpoint
+
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    covidData = data;
+                    for ( var i in data ){
+                        let s = document.createElement("option");
+                            s.value=data[i].state_abbrev;
+                            s.innerHTML=data[i].State;
+                            if ( currentState == data[i].State ){
+                                s.selected = true;
+                            }
+                            document.getElementById('state').appendChild(s);
+                    }
+                    updateData();
+                })
+                .catch(error => {
+                    console.error('There has been a problem with your fetch operation:', error);
+                });
+        }
+        function updateData(){
+            let state = document.getElementById("state").value;
+            for ( var i in covidData ){
+                if ( state == covidData[i].state_abbrev ){
+                    document.getElementById("level").innerHTML=covidData[i].activity_level_label;
+                    document.getElementById("level_number").innerHTML = covidData[i].activity_level+"/10";
+                    document.getElementById("collection").innerHTML = covidData[i].num_sites;
+                }
+            }
+        }
+        fetchData();
+    </script>
+</head>
+<body onload="getLocation()">
+    <div class="container">
+        <div class="content">
+            <select id="state" onchange="updateData()"></select><br/>
+            <label for="level">Current Level:</label> <div id="level"></div><br/>
+            <h1 id="level_number"></h1>
+            <p>Data based on <span id="collection"></span> wastewater collection sites.</p>
+        </div>
+    </div>
+</body>
+</html>
