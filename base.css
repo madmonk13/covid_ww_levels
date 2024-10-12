@@ -1,0 +1,30 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #666;
+    text-align: center;
+    color: #fff;
+}
+select {
+    text-align: center;
+}
+.container {
+    background-color: #fff;
+    border: 2px solid #000;
+    color: #000;
+}
+.content {
+    text-align: center;
+}
+#level {
+    border: none;
+    background-color: transparent;
+    display: inline-block;
+    margin: 0;
+}
+#level_number {
+    display: block;
+    font-weight: bold;
+}
+.high {
+    background: radial-gradient(green,yellow,orange,red,transparent,transparent);
+}

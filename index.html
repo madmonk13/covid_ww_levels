@@ -3,101 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="base.css" />
     <link rel="stylesheet" type="text/css" href="desktop.css" />
     <link rel="stylesheet" type="text/css" href="portrait.css" />
-        <title>Covid19 Wastewater Levels</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #666;
-            text-align: center;
-            color: #fff;
-        }
-        select {
-            text-align: center;
-        }
-        .container {
-            background-color: #fff;
-            border: 2px solid #000;
-            color: #000;
-        }
-        .content {
-            text-align: center;
-        }
-        #level {
-            border: none;
-            background-color: transparent;
-            display: inline-block;
-            margin: 0;
-        }
-        #level_number {
-            display: block;
-            font-weight: bold;
-        }
-    </style>
-    <script>
-
-        var covidData;
-        var currentState;
-
-        function getLocation(){
-            if ( getURLString() != "" ){
-                return
-            }
-            let tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-            console.log(tz);
-            let p = tz.split("/");
-            currentState = p[1].replace("_"," ");
-        }
-
-        function getURLString(){
-            let url=document.location.toString();
-            let p = url.split("?");
-            if ( p[1] != "" ){
-                let s = p[1].split("=");
-                currentState = decodeURI(s[1]);
-            }
-        }
-
-
-        function fetchStateData() {
-            const url = 'https://www.cdc.gov/wcms/vizdata/NCEZID_DIDRI/NWSSStateMap.json';
-            fetch(url)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok ' + response.statusText);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    covidData = data;
-                    for ( var i in data ){
-                        let s = document.createElement("option");
-                            s.value=data[i].state_abbrev;
-                            s.innerHTML=data[i].State;
-                            if ( currentState == data[i].State ){
-                                s.selected = true;
-                            }
-                            document.getElementById('state').appendChild(s);
-                    }
-                    updateData();
-                })
-                .catch(error => {
-                    console.error('There has been a problem with your fetch operation:', error);
-                });
-        }
-        function updateData(){
-            let state = document.getElementById("state").value;
-            for ( var i in covidData ){
-                if ( state == covidData[i].state_abbrev ){
-                    document.getElementById("level").innerHTML=covidData[i].activity_level_label;
-                    document.getElementById("level_number").innerHTML = covidData[i].activity_level+"/10";
-                    document.getElementById("collection").innerHTML = covidData[i].num_sites;
-                }
-            }
-        }
-        fetchStateData();
-    </script>
+    <title>Covid19 Wastewater Levels</title>
+    <script src="scripts.js"></script>
 </head>
 <body onload="getLocation()">
     <div class="container">
