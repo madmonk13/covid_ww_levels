@@ -21,7 +21,7 @@
     }
     #level_number {
         font-size: 10vh;
-        margin: 2vh 0;
+        margin: 2vh auto -16vh auto;
     }
     p {
         font-size: 1.25vh;

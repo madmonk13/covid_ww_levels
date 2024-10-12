@@ -74,6 +74,7 @@ function updateData(){
             document.getElementById("level").innerHTML=covidStateData[i].activity_level_label;
             document.getElementById("level_number").innerHTML = covidStateData[i].activity_level+"/10";
             document.getElementById("collection").innerHTML = covidStateData[i].num_sites;
+            document.getElementById("level_number").className="level_"+covidStateData[i].activity_level;
         }
     }
 }

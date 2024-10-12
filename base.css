@@ -20,11 +20,158 @@ select {
     background-color: transparent;
     display: inline-block;
     margin: 0;
+    width: 1vw;
 }
 #level_number {
     display: block;
     font-weight: bold;
+    width: 32vw;
+    height: 32vw;
+    line-height: 17vh;
+    border-radius: 50%;
 }
-.high {
-    background: radial-gradient(green,yellow,orange,red,transparent,transparent);
+
+
+.level_0 {
+    background-image: conic-gradient(
+        transparent, 0deg, 
+        transparent, 46deg, 
+        transparent, 270deg, 
+        green, 270deg, 
+        green, 285deg, 
+        transparent, 285deg,
+        transparent
+        );
+}
+
+.level_1 {
+    background-image: conic-gradient(
+        transparent, 0deg, 
+        transparent, 46deg, 
+        transparent, 270deg, 
+        green, 270deg, 
+        green, 285deg, 
+        yellow, 290deg, 
+        transparent, 290deg,
+        transparent
+        );
+}
+
+.level_2 {
+    background-image: conic-gradient(
+        transparent, 0deg, 
+        transparent, 46deg, 
+        transparent, 270deg, 
+        green, 270deg, 
+        green, 285deg, 
+        yellow, 300deg, 
+        transparent, 300deg,
+        transparent
+        );
+}
+
+.level_3 {
+    background-image: conic-gradient(
+        transparent, 0deg, 
+        transparent, 46deg, 
+        transparent, 270deg, 
+        green, 270deg, 
+        green, 285deg, 
+        yellow, 315deg, 
+        transparent, 315deg,
+        transparent
+        );
+}
+.level_4 {
+    background-image: conic-gradient(
+        transparent, 0deg, 
+        transparent, 46deg, 
+        transparent, 270deg, 
+        green, 270deg, 
+        green, 295deg, 
+        yellow, 335deg, 
+        transparent, 336deg,
+        transparent
+        );
+}
+.level_5 {
+    background-image: conic-gradient(
+        transparent, 0deg, 
+        transparent, 46deg, 
+        transparent, 270deg, 
+        green, 270deg, 
+        green, 300deg, 
+        yellow, 360deg, 
+        transparent, 360deg,
+        transparent
+        );
+}
+.level_6 {
+    background-image: conic-gradient(
+        yellow, 0deg, 
+        yellow, 25deg,
+        orange, 45deg,  
+        transparent, 46deg, 
+        transparent, 270deg, 
+        green, 270deg, 
+        green, 295deg, 
+        yellow, 335deg, 
+        yellow
+        );
+}
+.level_7 {
+    background-image: conic-gradient(
+        yellow, 0deg, 
+        yellow, 25deg,
+        orange, 35deg, 
+        red, 45deg, 
+        transparent, 46deg, 
+        transparent, 270deg, 
+        green, 270deg, 
+        green, 295deg, 
+        yellow, 335deg, 
+        yellow
+        );
+}
+.level_8 {
+    background-image: conic-gradient(
+        yellow, 0deg, 
+        yellow, 25deg,
+        orange, 45deg, 
+        red, 65deg, 
+        transparent, 66deg, 
+        transparent, 270deg, 
+        green, 270deg, 
+        green, 295deg, 
+        yellow, 335deg, 
+        yellow
+        );
+}
+.level_9 {
+    background-image: conic-gradient(
+        yellow, 0deg, 
+        yellow, 25deg,
+        orange, 45deg, 
+        red, 80deg, 
+        transparent, 81deg, 
+        transparent, 270deg, 
+        green, 270deg, 
+        green, 295deg, 
+        yellow, 335deg, 
+        yellow
+        );
+}
+.level_10 {
+    background-image: conic-gradient(
+        yellow, 0deg, 
+        yellow, 25deg,
+        orange, 65deg, 
+        red, 90deg, 
+        transparent, 91deg, 
+        transparent, 270deg, 
+        green, 270deg, 
+        green, 295deg, 
+        yellow, 335deg, 
+        yellow
+        );
 }
