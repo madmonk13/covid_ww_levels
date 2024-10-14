@@ -10,18 +10,17 @@
     .container {
         padding: 2vw;
         border-radius: 1vh;
-        width: 60vw;
-        margin-left: 16vw;
-        height: 60vw;
-        margin-top: 20vh;
-        margin-bottom: 2vh;
+        width: 90vw;
+        margin-left: 0;
+        height: 90vw;
+        text-align: center;
     }
     #level {
         font-size: 2vh;
     }
     #level_number {
         font-size: 10vh;
-        margin: 2vh auto -16vh auto;
+        /* margin: 2vh auto -16vh auto; */
     }
     p {
         font-size: 1.25vh;

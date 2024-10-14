@@ -15,21 +15,23 @@ select {
 .content {
     text-align: center;
 }
+.content div {
+    display:block;
+    width: 100%;
+    text-align: center;
+}
 #level {
     border: none;
     background-color: transparent;
-    display: inline-block;
     margin: 0;
-    width: 1vw;
 }
 #level_number {
-    display: block;
     font-weight: bold;
-    width: 32vw;
     height: 32vw;
     line-height: 17vh;
     border-radius: 50%;
 }
+
 
 /*
 .level_0 {

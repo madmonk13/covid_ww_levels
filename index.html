@@ -12,12 +12,15 @@
 <body onload="getLocation()">
     <div class="container">
         <div class="content">
-            <select id="state" onchange="updateData()"></select><br/>
-            <label for="level">Current Level:</label> <div id="level"></div><br/>
+            <div>
+                <select id="state" onchange="updateData()"></select>
+            </div>
+            <div id="level"></div>
             <div id="level_number"></div>
-            <p>Data based on <span id="collection"></span> wastewater collection sites.</p>
+            <div id="footer">
+                <p>Data based on <span id="collection"></span> wastewater collection sites <br/>and provided by <a href='https://www.cdc.gov/nwss/rv/COVID19-currentlevels.html'>CDC.gov</a>.</p>
+            </div>
         </div>
     </div>
-    Data provided by <a href='https://www.cdc.gov/nwss/rv/COVID19-currentlevels.html'>CDC.gov</a>.
 </body>
 </html>
