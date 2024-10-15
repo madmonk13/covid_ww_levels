@@ -22,8 +22,10 @@ function getURLString(){
 }
 
 function populateSites(data){
+    currentState = document.getElementById("state").value;
     if ( data == undefined ){ data = covidSiteData; }
     document.getElementById("site").innerHTML = "";
+    console.log(currentState);
     for ( var i in data ){
         if ( currentState == data[i].State ){
             let s = document.createElement("option");
@@ -37,7 +39,7 @@ function populateSites(data){
 function updateData(){
     let state = document.getElementById("state").value;
     for ( var i in covidStateData ){
-        if ( state == covidStateData[i].state_abbrev ){
+        if ( state == covidStateData[i].State ){
             document.getElementById("level").innerHTML=covidStateData[i].activity_level_label;
             document.getElementById("level_number").innerHTML = covidStateData[i].activity_level+"/10";
             document.getElementById("collection").innerHTML = covidStateData[i].num_sites;
@@ -89,7 +91,7 @@ function fetchSiteData(){
     function populateStates(data){
     for ( var i in data ){
         let s = document.createElement("option");
-            s.value=data[i].state_abbrev;
+            s.value=data[i].State;
             s.innerHTML=data[i].State;
             if ( currentState == data[i].State ){
                 s.selected = true;
