@@ -1,15 +1,33 @@
 var covidStateData;
 var covidSiteData;
 var currentState;
+var long;
+var lat;
 
 function getLocation(){
     if ( getURLString() != "" ){
         return
     }
     let tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    console.log(tz);
     let p = tz.split("/");
     currentState = p[1].replace("_"," ");
+
+
+    const successCallback = (position) => {
+        console.log(position);
+        long = position.coords.longitude;
+        lat = position.coords.latitude;
+        console.log(long,lat);
+      };
+      
+    const errorCallback = (error) => {
+    console.log(error);
+    };
+      
+    navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+      
+
+
 }
 
 function getURLString(){
@@ -98,6 +116,10 @@ function fetchSiteData(){
             }
             document.getElementById('state').appendChild(s);
     }
+}
+
+function findNearestSites(){
+
 }
 
 fetchStateData();
