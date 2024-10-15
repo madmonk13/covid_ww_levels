@@ -21,6 +21,31 @@ function getURLString(){
     }
 }
 
+function populateSites(data){
+    if ( data == undefined ){ data = covidSiteData; }
+    document.getElementById("site").innerHTML = "";
+    for ( var i in data ){
+        if ( currentState == data[i].State ){
+            let s = document.createElement("option");
+                s.value = data[i].sewershed;
+                s.innerHTML = data[i].counties
+            document.getElementById("site").appendChild(s);
+        }
+    }
+}
+
+function updateData(){
+    let state = document.getElementById("state").value;
+    for ( var i in covidStateData ){
+        if ( state == covidStateData[i].state_abbrev ){
+            document.getElementById("level").innerHTML=covidStateData[i].activity_level_label;
+            document.getElementById("level_number").innerHTML = covidStateData[i].activity_level+"/10";
+            document.getElementById("collection").innerHTML = covidStateData[i].num_sites;
+            document.getElementById("level_number").className="level_"+covidStateData[i].activity_level;
+        }
+    }
+    populateSites();
+}
 
 function fetchStateData() {
     const url = 'https://www.cdc.gov/wcms/vizdata/NCEZID_DIDRI/NWSSStateMap.json';
@@ -33,16 +58,9 @@ function fetchStateData() {
         })
         .then(data => {
             covidStateData = data;
-            for ( var i in data ){
-                let s = document.createElement("option");
-                    s.value=data[i].state_abbrev;
-                    s.innerHTML=data[i].State;
-                    if ( currentState == data[i].State ){
-                        s.selected = true;
-                    }
-                    document.getElementById('state').appendChild(s);
-            }
-            updateData();
+            populateStates(data);
+            fetchSiteData()
+            // updateData();
         })
         .catch(error => {
             console.error('Error getting State data.', error);
@@ -60,22 +78,24 @@ function fetchSiteData(){
         })
         .then(data => {
                 covidSiteData = data;
+                populateSites(data);
+                updateData();
         })
         .catch(error => {
             console.error('Error getting site data.', error);
         }
     )}
 
-
-function updateData(){
-    let state = document.getElementById("state").value;
-    for ( var i in covidStateData ){
-        if ( state == covidStateData[i].state_abbrev ){
-            document.getElementById("level").innerHTML=covidStateData[i].activity_level_label;
-            document.getElementById("level_number").innerHTML = covidStateData[i].activity_level+"/10";
-            document.getElementById("collection").innerHTML = covidStateData[i].num_sites;
-            document.getElementById("level_number").className="level_"+covidStateData[i].activity_level;
-        }
+    function populateStates(data){
+    for ( var i in data ){
+        let s = document.createElement("option");
+            s.value=data[i].state_abbrev;
+            s.innerHTML=data[i].State;
+            if ( currentState == data[i].State ){
+                s.selected = true;
+            }
+            document.getElementById('state').appendChild(s);
     }
 }
+
 fetchStateData();
