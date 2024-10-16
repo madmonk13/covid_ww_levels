@@ -5,19 +5,14 @@ var x;
 var y;
 
 function getLocation(){
-
-    let tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    let p = tz.split("/");
-    currentState = p[1].replace("_"," ");
-
-
     const successCallback = (position) => {
         x = position.coords.longitude;
         y = position.coords.latitude;
+        fetchStateData();
       };
       
     const errorCallback = (error) => {
-    console.log(error);
+        console.log(error);
     };
       
     navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
@@ -145,5 +140,3 @@ function calculateDistance(point1, point2) {
     let dy = point1[1] - point2[1];
     return Math.sqrt(dx * dx + dy * dy);
 }
-
-fetchStateData();

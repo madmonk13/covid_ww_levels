@@ -15,12 +15,9 @@
         height: 90vw;
         text-align: center;
     }
-    #level {
-        font-size: 2vh;
-    }
-    #level_number {
-        font-size: 10vh;
-        /* margin: 2vh auto -16vh auto; */
+    #level_state, #level_local {
+        height: 16vw;
+        line-height: 16vw;
     }
     p {
         font-size: 1.25vh;
