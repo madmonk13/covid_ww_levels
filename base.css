@@ -23,7 +23,7 @@ select {
 
 .level_10, .level_9, .level_8 { 
     color: black;
-    background-color: #red;
+    background-color: red;
  }
 .level_7, .level_6, .level_5 { 
     color: black;
