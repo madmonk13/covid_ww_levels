@@ -5,9 +5,7 @@ var x;
 var y;
 
 function getLocation(){
-    if ( getURLString() != "" ){
-        // return
-    }
+
     let tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
     let p = tz.split("/");
     currentState = p[1].replace("_"," ");
@@ -28,14 +26,6 @@ function getLocation(){
 
 }
 
-function getURLString(){
-    let url=document.location.toString();
-    let p = url.split("?");
-    if ( p[1] != "" ){
-        let s = p[1].split("=");
-        currentState = decodeURI(s[1]);
-    }
-}
 
 function populateSites(data){
     currentState = document.getElementById("state").value;
