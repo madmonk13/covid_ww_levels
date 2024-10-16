@@ -14,10 +14,8 @@ function getLocation(){
 
 
     const successCallback = (position) => {
-        console.log(position);
         x = position.coords.longitude;
         y = position.coords.latitude;
-        console.log(x,y);
       };
       
     const errorCallback = (error) => {
@@ -43,7 +41,6 @@ function populateSites(data){
     currentState = document.getElementById("state").value;
     if ( data == undefined ){ data = covidSiteData; }
     document.getElementById("site").innerHTML = "";
-    console.log(currentState);
     for ( var i in data ){
         if ( currentState == data[i].State ){
             let s = document.createElement("option");
@@ -52,19 +49,33 @@ function populateSites(data){
             document.getElementById("site").appendChild(s);
         }
     }
+    updateSiteData();
 }
 
-function updateData(){
+function updateStateData(){
     let state = document.getElementById("state").value;
     for ( var i in covidStateData ){
         if ( state == covidStateData[i].State ){
-            document.getElementById("level").innerHTML=covidStateData[i].activity_level_label;
-            document.getElementById("level_number").innerHTML = covidStateData[i].activity_level+"/10";
-            document.getElementById("collection").innerHTML = covidStateData[i].num_sites;
-            document.getElementById("level_number").className="level_"+covidStateData[i].activity_level;
+            document.getElementById("level_state").innerHTML = 
+            covidStateData[i].State + ", Statewide: "+
+            covidStateData[i].activity_level_label + ", " +
+            covidStateData[i].activity_level + "/10";
         }
     }
     populateSites();
+}
+
+function updateSiteData(){
+    let site = document.getElementById("site").value;
+    for ( var i in covidSiteData ){
+        if ( site == covidSiteData[i].sewershed ){
+            document.getElementById("level_local").innerHTML = 
+                covidSiteData[i].State + ", "+
+                covidSiteData[i].counties + ": "+
+                covidSiteData[i].activity_level_label + ", " +
+                covidSiteData[i].activity_level + "/10";
+        }
+    }
 }
 
 function fetchStateData() {
@@ -80,7 +91,6 @@ function fetchStateData() {
             covidStateData = data;
             populateStates(data);
             fetchSiteData()
-            // updateData();
         })
         .catch(error => {
             console.error('Error getting State data.', error);
@@ -99,7 +109,7 @@ function fetchSiteData(){
         .then(data => {
                 covidSiteData = data;
                 populateSites(data);
-                updateData();
+                updateStateData();
                 findNearestSites();
         })
         .catch(error => {
@@ -126,7 +136,6 @@ function findNearestSites(){
 
     for ( var i in covidSiteData ) {
         let currentDistance = calculateDistance([x,y], [covidSiteData[i].longitude,covidSiteData[i].latitude]);
-        console.log(currentDistance,closestDistance);
 
         if (currentDistance < closestDistance) {
             closest = covidSiteData[i];
@@ -134,8 +143,9 @@ function findNearestSites(){
         }
     }
     document.getElementById("state").value = closest.State;
-    updateData();
+    updateStateData();
     document.getElementById("site").value = closest.sewershed;
+    updateSiteData();
     return closest;
 
 }

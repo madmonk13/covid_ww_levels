@@ -13,13 +13,16 @@
     <div class="container">
         <div class="content">
             <div>
-                <select id="state" onchange="updateData()"></select><br/>
-                <select id="site" onchange=""></select>
+                <select id="state" onchange="updateStateData()"></select><br/>
+                <select id="site" onchange="updateSiteData()"></select>
             </div>
+            <div id="level_local"></div>
+            <div id="level_state"></div>
             <div id="level"></div>
             <div id="level_number"></div>
             <div id="footer">
-                <p>Data based on <span id="collection"></span> wastewater collection sites <br/>and provided by <a href='https://www.cdc.gov/nwss/rv/COVID19-currentlevels.html'>CDC.gov</a>.</p>
+                <p>State data based on <span id="collection"></span> wastewater collection sites <br/>and provided by <a href='https://www.cdc.gov/nwss/rv/COVID19-currentlevels.html'>CDC.gov</a>.  
+                    Default sample site is based on nearest geolocation and may not represent your sewer facility.</p>
             </div>
         </div>
     </div>
