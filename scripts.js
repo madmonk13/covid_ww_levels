@@ -1,12 +1,12 @@
 var covidStateData;
 var covidSiteData;
 var currentState;
-var long;
-var lat;
+var x;
+var y;
 
 function getLocation(){
     if ( getURLString() != "" ){
-        return
+        // return
     }
     let tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
     let p = tz.split("/");
@@ -15,9 +15,9 @@ function getLocation(){
 
     const successCallback = (position) => {
         console.log(position);
-        long = position.coords.longitude;
-        lat = position.coords.latitude;
-        console.log(long,lat);
+        x = position.coords.longitude;
+        y = position.coords.latitude;
+        console.log(x,y);
       };
       
     const errorCallback = (error) => {
@@ -100,6 +100,7 @@ function fetchSiteData(){
                 covidSiteData = data;
                 populateSites(data);
                 updateData();
+                findNearestSites();
         })
         .catch(error => {
             console.error('Error getting site data.', error);
@@ -119,7 +120,30 @@ function fetchSiteData(){
 }
 
 function findNearestSites(){
+    let closest = covidSiteData[0];
+    let closestDistance = calculateDistance([x,y], [closest.longitude,closest.latitude]);
 
+
+    for ( var i in covidSiteData ) {
+        let currentDistance = calculateDistance([x,y], [covidSiteData[i].longitude,covidSiteData[i].latitude]);
+        console.log(currentDistance,closestDistance);
+
+        if (currentDistance < closestDistance) {
+            closest = covidSiteData[i];
+            closestDistance = currentDistance;
+        }
+    }
+    document.getElementById("state").value = closest.State;
+    updateData();
+    document.getElementById("site").value = closest.sewershed;
+    return closest;
+
+}
+
+function calculateDistance(point1, point2) {
+    let dx = point1[0] - point2[0];
+    let dy = point1[1] - point2[1];
+    return Math.sqrt(dx * dx + dy * dy);
 }
 
 fetchStateData();
