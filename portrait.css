@@ -18,6 +18,9 @@
     #level_state, #level_local {
         height: 16vw;
         line-height: 16vw;
+        margin:1vw auto 4vw auto;
+        border: 1px solid #666;
+        font-weight: bold;
     }
     p {
         font-size: 1.25vh;

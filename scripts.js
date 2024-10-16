@@ -45,6 +45,7 @@ function updateStateData(){
             covidStateData[i].State + ", Statewide: "+
             covidStateData[i].activity_level_label + ", " +
             covidStateData[i].activity_level + "/10";
+            document.getElementById("level_state").className = "level_"+covidStateData[i].activity_level
         }
     }
     populateSites();
@@ -59,6 +60,7 @@ function updateSiteData(){
                 covidSiteData[i].counties + ": "+
                 covidSiteData[i].activity_level_label + ", " +
                 covidSiteData[i].activity_level + "/10";
+                document.getElementById("level_local").className = "level_"+covidSiteData[i].activity_level
         }
     }
 }
