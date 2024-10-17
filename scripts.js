@@ -30,7 +30,7 @@ function populateSites(data){
         if ( currentState == data[i].State ){
             let s = document.createElement("option");
                 s.value = data[i].sewershed;
-                s.innerHTML = data[i].counties
+                s.innerHTML = data[i].counties + " (" +data[i].sewershed+ ")";
             document.getElementById("site").appendChild(s);
         }
     }
@@ -41,11 +41,11 @@ function updateStateData(){
     let state = document.getElementById("state").value;
     for ( var i in covidStateData ){
         if ( state == covidStateData[i].State ){
-            document.getElementById("level_state").innerHTML = 
-            covidStateData[i].State + ", Statewide: "+
-            covidStateData[i].activity_level_label + ", " +
-            covidStateData[i].activity_level + "/10";
-            document.getElementById("level_state").className = "level_"+covidStateData[i].activity_level
+            document.getElementById("state_location").innerHTML = covidStateData[i].State + ", Statewide";
+            document.getElementById("state_level").innerHTML = covidStateData[i].activity_level + "/10";
+            document.getElementById("state_desc").innerHTML = covidStateData[i].activity_level_label;
+            document.getElementById("state_sites").innerHTML = "Based on results from "+covidStateData[i].num_sites+" total sites.";
+            document.getElementById("state_date").innerHTML = covidStateData[i].time_period_map;
         }
     }
     populateSites();
@@ -55,12 +55,10 @@ function updateSiteData(){
     let site = document.getElementById("site").value;
     for ( var i in covidSiteData ){
         if ( site == covidSiteData[i].sewershed ){
-            document.getElementById("level_local").innerHTML = 
-                covidSiteData[i].State + ", "+
-                covidSiteData[i].counties + ": "+
-                covidSiteData[i].activity_level_label + ", " +
-                covidSiteData[i].activity_level + "/10";
-                document.getElementById("level_local").className = "level_"+covidSiteData[i].activity_level
+            document.getElementById("site_location").innerHTML = covidSiteData[i].counties + ", " + covidSiteData[i].State;
+            document.getElementById("site_level").innerHTML = covidSiteData[i].activity_level + "/10";
+            document.getElementById("site_desc").innerHTML = covidSiteData[i].activity_level_label;
+            document.getElementById("site_date").innerHTML = covidSiteData[i].time_period_map;
         }
     }
 }
@@ -94,7 +92,7 @@ function fetchSiteData(){
             return response.json();
         })
         .then(data => {
-                covidSiteData = data;
+                covidSiteData = alpha(data);
                 populateSites(data);
                 updateStateData();
                 findNearestSites();
@@ -141,4 +139,16 @@ function calculateDistance(point1, point2) {
     let dx = point1[0] - point2[0];
     let dy = point1[1] - point2[1];
     return Math.sqrt(dx * dx + dy * dy);
+}
+
+function alpha(arr){
+    return arr.sort((a, b) => {
+        if (a.counties < b.counties) {
+          return -1;
+        }
+        if (a.counties > b.counties ) {
+          return 1;
+        }
+        return 0;
+      });
 }
