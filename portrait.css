@@ -13,13 +13,44 @@
         width: 90vw;
         margin-left: 0;
         text-align: center;
+        height: 94vh;
     }
-    #level_state, #level_local {
+
+    .container div {
+        display: inline-block;
+    }
+
+    #state_location, #site_location {
+        width: 70vw;
+        text-align: left;
+        font-weight: bold;
+        vertical-align: top;
+    }
+
+    #state_level, #site_level {
+        width: 14vw;
+        font-size: 4vh;
+    }
+
+    #state_desc, #site_desc {
+        width: 14vw;
+        font-size: 2vh;
+        display: block;
+        float: right;
+    }
+
+    #state_date, #state_sites, #site_date {
+        width: 100%;
+        margin: 1vh 0 0 0;
+        font-size: 1.75vh;
+    }
+
+    /* #level_state, #level_local {
         height: 16vw;
         margin:1vw auto 4vw auto;
         border: 1px solid #666;
         font-weight: bold;
-    }
+    } */
 
     p {
         font-size: 1.25vh;

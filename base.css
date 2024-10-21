@@ -13,14 +13,14 @@ select {
     color: #000;
     height: auto;
 }
-.content {
+/* .content {
     text-align: center;
 }
 .content div {
     display:block;
     width: 100%;
     text-align: center;
-}
+} */
 
 .level_10, .level_9, .level_8 { 
     color: black;
