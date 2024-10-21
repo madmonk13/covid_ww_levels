@@ -121,7 +121,7 @@ function findNearestSites(){
 
     for ( var i in covidSiteData ) {
         let currentDistance = calculateDistance([x,y], [covidSiteData[i].longitude,covidSiteData[i].latitude]);
-
+        covidSiteData[i].distance = currentDistance;
         if (currentDistance < closestDistance) {
             closest = covidSiteData[i];
             closestDistance = currentDistance;
@@ -131,7 +131,17 @@ function findNearestSites(){
     updateStateData();
     document.getElementById("site").value = closest.sewershed;
     updateSiteData();
-    return closest;
+    covidSiteData.sort((a, b) => {
+        if (a.distance < b.distance) {
+          return -1;
+        }
+        if (a.distance > b.distance ) {
+          return 1;
+        }
+        return 0;
+      });
+
+    // return closest;
 
 }
 
