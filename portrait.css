@@ -21,22 +21,24 @@
     }
 
     #state_location, #site_location {
-        width: 70vw;
-        text-align: left;
+        width: 100%;
+        text-align: center;
         font-weight: bold;
         vertical-align: top;
+        font-size: 6vw;
     }
 
     #state_level, #site_level {
-        width: 14vw;
-        font-size: 4vh;
+        width: 100%;
+        font-size: 8vh;
+        font-weight: bold;
     }
 
     #state_desc, #site_desc {
-        width: 14vw;
+        width: 50vw;
         font-size: 2vh;
-        display: block;
-        float: right;
+        font-weight: bold;
+        padding: 2vw;
     }
 
     #state_date, #state_sites, #site_date {
@@ -53,7 +55,7 @@
     } */
 
     p {
-        font-size: 1.25vh;
+        font-size: 1.75vh;
     }
 
 }
