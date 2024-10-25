@@ -29,9 +29,17 @@
     }
 
     #state_level, #site_level {
-        width: 100%;
         font-size: 8vh;
         font-weight: bold;
+        border-radius: 25vw 25vw 0 0;
+        width: 50vw;
+        height: 25vw;
+        line-height: 30vw;
+        display: block;
+        margin: 1vh auto;
+        filter: drop-shadow(0vw 1vw 2vw #aaa);
+        border: 0.5vw solid #999;
+        background-color: #fff;
     }
 
     #state_desc, #site_desc {
@@ -39,6 +47,8 @@
         font-size: 2vh;
         font-weight: bold;
         padding: 2vw;
+        text-transform: uppercase;
+        border-radius: 1vh;
     }
 
     #state_date, #state_sites, #site_date {

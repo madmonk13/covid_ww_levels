@@ -43,6 +43,7 @@ function updateStateData(){
         if ( state == covidStateData[i].State ){
             document.getElementById("state_location").innerHTML = covidStateData[i].State + ", Statewide";
             document.getElementById("state_level").innerHTML = covidStateData[i].activity_level;
+            document.getElementById("state_level").className = "guage_"+covidStateData[i].activity_level;
             document.getElementById("state_desc").innerHTML = covidStateData[i].activity_level_label;
             document.getElementById("state_sites").innerHTML = "Based on results from "+covidStateData[i].num_sites+" total sites.";
             document.getElementById("state_date").innerHTML = covidStateData[i].time_period_map;
@@ -58,6 +59,7 @@ function updateSiteData(){
         if ( site == covidSiteData[i].sewershed ){
             document.getElementById("site_location").innerHTML = covidSiteData[i].counties + ", " + covidSiteData[i].State;
             document.getElementById("site_level").innerHTML = covidSiteData[i].activity_level;
+            document.getElementById("site_level").className = "guage_"+covidSiteData[i].activity_level;
             document.getElementById("site_desc").innerHTML = covidSiteData[i].activity_level_label;
             document.getElementById("site_date").innerHTML = covidSiteData[i].time_period_map;
             document.getElementById("site_desc").className = "level_"+covidSiteData[i].activity_level;

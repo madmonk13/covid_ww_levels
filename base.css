@@ -38,3 +38,120 @@ select {
     color: white;
     background-color: green;
  }
+
+ .guage_10 {
+    background-image: conic-gradient(
+        at 50% 100%,
+        yellow,
+        45deg, red,
+        90deg,#fff,
+        91deg,#fff,
+        269deg,#fff,
+        270deg,green,
+        315deg,yellow
+    );
+ }
+ .guage_9 {
+    background-image: conic-gradient(
+        at 50% 100%,
+        yellow,
+        45deg, red,
+        72deg,#fff,
+        73deg,#fff,
+        269deg,#fff,
+        270deg,green,
+        315deg,yellow
+    );
+ }
+ .guage_8 {
+    background-image: conic-gradient(
+        at 50% 100%,
+        yellow,
+        45deg, red,
+        54deg,#fff,
+        53deg,#fff,
+        269deg,#fff,
+        270deg,green,
+        315deg,yellow
+    );
+ }
+ .guage_7 {
+    background-image: conic-gradient(
+        at 50% 100%,
+        yellow,
+        18deg, orange,
+        36deg, orange,
+        37deg,#fff,
+        38deg,#fff,
+        269deg,#fff,
+        270deg,green,
+        315deg,yellow
+    );
+ }
+ .guage_6 {
+    background-image: conic-gradient(
+        at 50% 100%,
+        yellow,
+        18deg, rgb(251, 194, 109),
+        19deg,#fff,
+        269deg,#fff,
+        270deg,green,
+        315deg,yellow
+    );
+ }
+ .guage_5 {
+    background-image: conic-gradient(
+        at 50% 100%,
+        yellow,
+        1deg,yellow,
+        2deg,#fff,
+        270deg,green,
+        315deg,yellow
+    );
+ }
+ .guage_4 {
+    background-image: conic-gradient(
+        at 50% 100%,
+        #fff,
+        2deg,#fff,
+        270deg,green,
+        315deg,yellow,
+        342deg,yellow,
+        343deg,#fff,
+        #fff
+    );
+ }
+ .guage_3 {
+    background-image: conic-gradient(
+        at 50% 100%,
+        #fff,
+        2deg,#fff,
+        270deg,green,
+        305deg,yellow,
+        322deg,yellow,
+        33deg,#fff,
+        #fff
+    );
+ }
+ .guage_2 {
+    background-image: conic-gradient(
+        at 50% 100%,
+        #fff,
+        2deg,#fff,
+        270deg,green,
+        304deg,lightgreen,
+        305deg,#fff,
+        #fff
+    );
+ }
+ .guage_1 {
+    background-image: conic-gradient(
+        at 50% 100%,
+        #fff,
+        2deg,#fff,
+        270deg,green,
+        286deg,lightgreen,
+        287deg,#fff,
+        #fff
+    );
+ }
