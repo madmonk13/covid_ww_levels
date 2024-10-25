@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Trebuchet MS', sans-serif;
     background-color: #eee;
     text-align: center;
     color: #666;
@@ -9,8 +9,8 @@ select {
 }
 .container {
     background-color: #fff;
-    border: 2px solid #000;
-    color: #000;
+    border: 2px solid #999;
+    color: #333;
     height: auto;
 }
 /* .content {

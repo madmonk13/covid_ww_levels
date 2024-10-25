@@ -1,8 +1,8 @@
-var covidStateData;
-var covidSiteData;
-var currentState;
-var x;
-var y;
+let covidStateData;
+let covidSiteData;
+let currentState;
+let x;
+let y;
 
 function getLocation(){
     const successCallback = (position) => {
@@ -10,15 +10,10 @@ function getLocation(){
         y = position.coords.latitude;
         fetchStateData();
       };
-      
     const errorCallback = (error) => {
         console.log(error);
     };
-      
     navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
-      
-
-
 }
 
 
@@ -26,7 +21,7 @@ function populateSites(data){
     currentState = document.getElementById("state").value;
     if ( data == undefined ){ data = covidSiteData; }
     document.getElementById("site").innerHTML = "";
-    for ( var i in data ){
+    for ( var i in alpha(data) ){
         if ( currentState == data[i].State ){
             let s = document.createElement("option");
                 s.value = data[i].sewershed;
