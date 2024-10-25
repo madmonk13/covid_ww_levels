@@ -57,9 +57,9 @@
     #state_date, #state_sites, #site_date, #site_distance {
         width: 100%;
         margin: 1vh 0 0 0;
-        font-size: 1.75vh;
+        font-size: 2vh;
+        line-height: 1vh;
     }
-
     p {
         font-size: 2vh;
     }
