@@ -1,6 +1,6 @@
 body {
     font-family: 'Trebuchet MS', sans-serif;
-    background-color: #eee;
+    background-color: #fff;
     text-align: center;
     color: #666;
 }
@@ -8,8 +8,8 @@ select {
     text-align: center;
 }
 .container {
-    background-color: #fff;
-    border: 2px solid #999;
+    /* background-color: #fff; */
+    /* border: 2px solid #999; */
     color: #333;
     height: auto;
 }
