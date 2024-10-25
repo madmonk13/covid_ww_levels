@@ -51,7 +51,7 @@
         border-radius: 1vh;
     }
 
-    #state_date, #state_sites, #site_date {
+    #state_date, #state_sites, #site_date, #site_distance {
         width: 100%;
         margin: 1vh 0 0 0;
         font-size: 1.75vh;

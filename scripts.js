@@ -61,6 +61,9 @@ function updateSiteData(){
             document.getElementById("site_level").innerHTML = covidSiteData[i].activity_level;
             document.getElementById("site_level").className = "guage_"+covidSiteData[i].activity_level;
             document.getElementById("site_desc").innerHTML = covidSiteData[i].activity_level_label;
+            document.getElementById("site_distance").innerHTML = "Treatment site roughly "+
+                haversine(x,y,covidSiteData[i].longitude,covidSiteData[i].latitude)+
+                " miles away.";
             document.getElementById("site_date").innerHTML = covidSiteData[i].time_period_map;
             document.getElementById("site_desc").className = "level_"+covidSiteData[i].activity_level;
         }
@@ -122,7 +125,6 @@ function findNearestSites(){
     let closest = covidSiteData[0];
     let closestDistance = calculateDistance([x,y], [closest.longitude,closest.latitude]);
 
-
     for ( var i in covidSiteData ) {
         let currentDistance = calculateDistance([x,y], [covidSiteData[i].longitude,covidSiteData[i].latitude]);
         covidSiteData[i].distance = currentDistance;
@@ -165,4 +167,18 @@ function alpha(arr){
         }
         return 0;
       });
+}
+
+function haversine(lat1, lon1, lat2, lon2) {
+    // const R = 6371;
+    const R = 3959;
+    const toRadians = angle => angle * (Math.PI / 180);
+    const dLat = toRadians(lat2 - lat1);
+    const dLon = toRadians(lon2 - lon1);
+    const a = Math.sin(dLat / 2) ** 2 + 
+              Math.cos(toRadians(lat1)) * Math.cos(toRadians(lat2)) * 
+              Math.sin(dLon / 2) ** 2;
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    const distance = R * c;   
+    return Math.round(distance*100)/100;
 }
