@@ -4,9 +4,4 @@ Current Covid19 Wastewater Levels By State
 Data provided by https://www.cdc.gov/nwss/rv/COVID19-nationaltrend.html
 
 Todo:
-
-Better styling
-
-Color coding levels?
-
-Update styling for desktop vs mobile.
+Current styling is optimized for mobile.  Desktop layout has yet to be determined.
