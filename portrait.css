@@ -45,7 +45,7 @@
 
     #state_desc, #site_desc {
         width: 50vw;
-        font-size: 2vh;
+        font-size: 2.5vh;
         font-weight: bold;
         padding: 2vw;
         text-transform: uppercase;
@@ -61,7 +61,7 @@
     }
 
     p {
-        font-size: 1.75vh;
+        font-size: 2vh;
     }
 
 }
