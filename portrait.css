@@ -52,6 +52,7 @@
         border-radius: 1vh;
         filter: drop-shadow(0vw 1vw 2vw #aaa);
         border: 0.5vw solid #999;
+        margin-bottom: 2vh;
     }
 
     #state_date, #state_sites, #site_date, #site_distance {
