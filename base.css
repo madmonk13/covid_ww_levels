@@ -8,19 +8,9 @@ select {
     text-align: center;
 }
 .container {
-    /* background-color: #fff; */
-    /* border: 2px solid #999; */
     color: #333;
     height: auto;
 }
-/* .content {
-    text-align: center;
-}
-.content div {
-    display:block;
-    width: 100%;
-    text-align: center;
-} */
 
 .level_10, .level_9, .level_8 { 
     color: #fff;

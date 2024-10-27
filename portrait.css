@@ -17,10 +17,6 @@
         border-radius: 4vw;
     }
 
-    .container div {
-        display: inline-block;
-    }
-
     #state_location, #site_location {
         width: 100%;
         text-align: center;
@@ -28,7 +24,7 @@
         vertical-align: top;
         font-size: 6vw;
     }
-
+    
     #state_level, #site_level {
         font-size: 8vh;
         font-weight: bold;
@@ -42,7 +38,7 @@
         border: 0.5vw solid #999;
         background-color: #fff;
     }
-
+    
     #state_desc, #site_desc {
         width: 50vw;
         font-size: 2.5vh;
@@ -54,7 +50,7 @@
         border: 0.5vw solid #999;
         margin-bottom: 2vh;
     }
-
+    
     #state_date, #state_sites, #site_date, #site_distance {
         width: 100%;
         margin: 1vh 0 0 0;
@@ -64,5 +60,9 @@
     p {
         font-size: 2vh;
     }
+    
 
+    .container div {
+        display: inline-block;
+    }
 }
