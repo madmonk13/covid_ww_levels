@@ -1,4 +1,4 @@
-@media (orientation: portrait) {
+@media (max-width:800px) {
 
     body {
         font-size: 2vh;
