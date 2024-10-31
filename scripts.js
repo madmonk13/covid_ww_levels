@@ -108,6 +108,7 @@ function fetchSiteData(){
         .catch(error => {
             console.error('Error getting site data.', error);
             document.getElementById("site_data").style.display="none";
+            document.getElementById("state_error").style.display="block";
         }
     )}
 

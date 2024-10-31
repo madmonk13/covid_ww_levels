@@ -22,6 +22,7 @@
         opacity: 0;
     }
     #state_error {
+        display: none;
         margin: 20vh 0;
         padding: 2vh;
     }
