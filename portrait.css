@@ -2,6 +2,8 @@
 
     body {
         font-size: calc(15px + 0.390625vw);
+        /* background-image: linear-gradient(#eee,#ddd, #eee); */
+        background-color: lightsteelblue;
     }
     select {
         font-size: calc(15px + 0.390625vw);
@@ -15,6 +17,14 @@
         text-align: center;
         height: 94vh;
         border-radius: 4vw;
+    }
+    hr {
+        opacity: 0;
+    }
+    #site_data, #state_data, #footer {
+        background-color: #fff;
+        border-radius: 2vw;
+        padding: 2vw;
     }
 
     #state_location, #site_location {
@@ -58,7 +68,8 @@
         line-height: 1vh;
     }
     p {
-        font-size: 2vh;
+        font-size: 1.5vh;
+        font-family: Arial, Sans-Serif;
     }
     
 
