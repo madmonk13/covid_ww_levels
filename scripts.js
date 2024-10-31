@@ -83,7 +83,7 @@ function fetchStateData() {
             console.error('Error getting State data.', error);
             document.getElementById("state_data").style.display="none";
             document.getElementById("site_data").style.display="none";
-            document.getElementById("state_error").style.display="block";
+            // document.getElementById("state_error").style.display="block";
             fetchSiteData();
             return
 
@@ -108,7 +108,7 @@ function fetchSiteData(){
         .catch(error => {
             console.error('Error getting site data.', error);
             document.getElementById("site_data").style.display="none";
-            document.getElementById("state_error").style.display="block";
+            // document.getElementById("state_error").style.display="block";
         }
     )}
 
