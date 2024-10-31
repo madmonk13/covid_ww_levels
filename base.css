@@ -12,6 +12,10 @@ select {
     height: auto;
 }
 
+#state_error {
+    display: none;
+    color: red;
+}
 .level_10, .level_9, .level_8 { 
     color: #fff;
     background-color: red;
