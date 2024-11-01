@@ -12,6 +12,8 @@ function getLocation(){
       };
     const errorCallback = (error) => {
         console.log(error);
+        fetchStateData();
+
     };
     navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
 }
@@ -56,9 +58,17 @@ function updateSiteData(){
             document.getElementById("site_level").innerHTML = covidSiteData[i].activity_level;
             document.getElementById("site_level").className = "guage_"+covidSiteData[i].activity_level;
             document.getElementById("site_desc").innerHTML = covidSiteData[i].activity_level_label;
-            document.getElementById("site_distance").innerHTML = "Treatment site roughly "+
+            if ( x === undefined && y === undefined ){
+                document.getElementById("site_distance").style.display = "none";
+            }
+            else {
+                document.getElementById("site_distance").innerHTML = "Treatment site roughly "+
                 haversine(x,y,covidSiteData[i].longitude,covidSiteData[i].latitude)+
                 " miles away.";
+                document.getElementById("site_distance").style.display = "block";
+
+            }
+
             document.getElementById("site_date").innerHTML = covidSiteData[i].time_period_map;
             document.getElementById("site_desc").className = "level_"+covidSiteData[i].activity_level;
         }
@@ -125,6 +135,9 @@ function fetchSiteData(){
 }
 
 function findNearestSites(){
+    if ( x === undefined && y === undefined ){
+        return
+    }
     let closest = covidSiteData[0];
     let closestDistance = calculateDistance([x,y], [closest.longitude,closest.latitude]);
 
