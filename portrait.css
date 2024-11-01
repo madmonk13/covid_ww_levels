@@ -9,12 +9,11 @@
         border-radius: 2vw;
         padding: 1vw;
         text-align: center;
+        margin-left:-0.5em;
     }
 
-    select::after {
-        content: "V";
-        color: #000;
-        margin-left: -50%;
+    .arrow {
+        margin-left: -1.5em;
     }
 
     @keyframes gradient {
