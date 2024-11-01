@@ -73,6 +73,10 @@ function updateSiteData(){
             document.getElementById("site_desc").className = "level_"+covidSiteData[i].activity_level;
         }
     }
+    document.getElementById("loading").className="fadeout";
+    let t = setTimeout(function(){
+        document.getElementById("loading").style.display="none";
+    },1000)
 }
 
 function fetchStateData() {

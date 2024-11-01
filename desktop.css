@@ -7,6 +7,9 @@
         font-size: calc(15px + 0.390625vw);
         margin-bottom: 1vh;
     }
+    #loading {
+        display: none;
+    }
     .container {
         max-width: 500px;
         padding: 1em;
