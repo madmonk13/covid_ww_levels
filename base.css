@@ -94,13 +94,13 @@ select {
     );
  }
  .guage_5 {
-    background-image: conic-gradient(
-        at 50% 100%,
-        yellow,
-        1deg,yellow,
-        2deg,#fff,
-        270deg,green,
-        315deg,yellow
+    background-image: conic-gradient( 
+        at 50% 100%, 
+        yellow, 
+        1deg,#fff, 
+        2deg,#fff, 
+        270deg,green, 
+        315deg,yellow 
     );
  }
  .guage_4 {
