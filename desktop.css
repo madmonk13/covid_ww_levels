@@ -11,7 +11,21 @@
         display: none;
     }
     #loading {
-        display: none;
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background-color: lightsteelblue;
+        z-index: 9;
+        color: #333;
+        padding: 30vh 0;
+        font: 2vw;
+    }
+    #loading #spinner {
+        font-size: 10vw;
+        margin: 0;
     }
     .container {
         width: 90vw;
