@@ -51,7 +51,7 @@
         text-align: center;
         font-weight: bold;
         vertical-align: top;
-        font-size: 3vw;
+        font-size: 2.65vw;
     }
     
     #state_level, #site_level {
@@ -83,7 +83,7 @@
     #state_date, #state_sites, #site_date, #site_distance {
         width: 100%;
         margin: 1em 0;
-        font-size: 1em;
+        font-size: 0.8em;
         line-height: 0.25em;
     }
 
@@ -95,6 +95,6 @@
         margin: 2vh 0;
     }
     p {
-        font-size: 1em;
+        font-size: 0.8em;
     }   
 }
