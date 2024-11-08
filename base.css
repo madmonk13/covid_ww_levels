@@ -1,3 +1,46 @@
+@keyframes gradient {
+    0% { background-position: 0% 50%;}
+    15% { background-position: 0% 100% }
+    30% {background-position: 50% 100%;}
+    45% {background-position: 50% 50%;}
+    60% {background-position: 100% 50%;}
+    75% {background-position: 100% 0%;}
+    90% {background-position: 50% 0%;}
+    100% {background-position: 50% 50%;}
+}
+
+@keyframes rotate {
+    0% { transform: rotate(0deg);}
+    100% { transform: rotate(359deg);}
+}
+
+@keyframes fadeout {
+    0% { opacity: 1; }
+    100% { opacity: 0; }        
+}
+
+.fadeout {
+    animation-name: fadeout;
+    animation-duration: 1.1s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+}
+
+body {
+    font-size: calc(15px + 0.390625vw);
+    background-color: lightsteelblue;
+    background-image: radial-gradient( lightsteelblue, lightskyblue, lightblue, #eee);
+    background-size: 150% 150%;
+    animation: gradient 60s ease infinite;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    color: #666;
+    background-attachment: scroll;
+    background-clip: border-box;
+}
+
+
 body {
     font-family: Arial, sans-serif;
     background-color: #fff;
