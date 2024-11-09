@@ -126,15 +126,17 @@ select {
     );
  }
  .guage_6 {
-    background-image: conic-gradient(
-        at 50% 100%,
-        yellow,
-        18deg, rgb(251, 194, 109),
-        19deg,#fff,
-        269deg,#fff,
-        270deg,green,
-        315deg,yellow
-    );
+    background-image: conic-gradient( 
+        at 50% 100%, 
+        yellow, 
+        18deg, rgb(251, 194, 109), 
+        19deg,#fff, 
+        20deg, #fff,
+        269deg,#fff, 
+        270deg,green, 
+        315deg,
+        yellow 
+    )
  }
  .guage_5 {
     background-image: conic-gradient( 
