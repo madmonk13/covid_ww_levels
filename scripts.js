@@ -26,8 +26,11 @@ function populateSites(data){
     for ( var i in alpha(data) ){
         if ( currentState == data[i].State ){
             let s = document.createElement("option");
-                s.value = data[i].sewershed;
-                s.innerHTML = data[i].counties + " (" +data[i].sewershed+ ")";
+                if (data[i].sewershed != null ){
+                    s.value = data[i].sewershed;
+                    s.innerHTML = data[i].counties + " (" +data[i].sewershed+ ")";
+                }
+
             document.getElementById("site").appendChild(s);
         }
     }
@@ -39,12 +42,19 @@ function updateStateData(){
     for ( var i in covidStateData ){
         if ( state == covidStateData[i].State ){
             document.getElementById("state_location").innerHTML = covidStateData[i].State + ", Statewide";
-            document.getElementById("state_level").innerHTML = covidStateData[i].activity_level;
-            document.getElementById("state_level").className = "guage_"+covidStateData[i].activity_level;
+            if ( isNaN(parseInt(covidStateData[i].activity_level)) ){
+                document.getElementById("state_level").innerHTML = "&#128683;";
+                document.getElementById("state_level").className = "not_available";
+                document.getElementById("state_desc").className = "not_available";
+            }
+            else {
+                document.getElementById("state_level").innerHTML = covidStateData[i].activity_level;
+                document.getElementById("state_level").className = "guage_"+covidStateData[i].activity_level;
+                document.getElementById("state_desc").className = "level_"+covidStateData[i].activity_level;
+            }
             document.getElementById("state_desc").innerHTML = covidStateData[i].activity_level_label;
             document.getElementById("state_sites").innerHTML = "Based on results from "+covidStateData[i].num_sites+" total sites.";
             document.getElementById("state_date").innerHTML = covidStateData[i].time_period_map;
-            document.getElementById("state_desc").className = "level_"+covidStateData[i].activity_level;
         }
     }
     populateSites();
