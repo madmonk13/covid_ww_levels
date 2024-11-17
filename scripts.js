@@ -9,6 +9,7 @@ function getLocation(){
         x = position.coords.longitude;
         y = position.coords.latitude;
         fetchStateData();
+        document.getElementById("nearest").style.display = "none";
       };
     const errorCallback = (error) => {
         console.log(error);
@@ -37,7 +38,10 @@ function populateSites(data){
     updateSiteData();
 }
 
-function updateStateData(){
+function updateStateData(manual){
+    if ( manual === true && x != undefined && y != undefined ){
+        document.getElementById("nearest").style.display = "block";
+    }
     let state = document.getElementById("state").value;
     for ( var i in covidStateData ){
         if ( state == covidStateData[i].State ){
@@ -60,7 +64,10 @@ function updateStateData(){
     populateSites();
 }
 
-function updateSiteData(){
+function updateSiteData(manual){
+    if ( manual === true && x != undefined && y != undefined ){
+        document.getElementById("nearest").style.display = "block";
+    }
     let site = document.getElementById("site").value;
     for ( var i in covidSiteData ){
         if ( site == covidSiteData[i].sewershed ){

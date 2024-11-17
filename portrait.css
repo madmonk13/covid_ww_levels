@@ -22,7 +22,7 @@
         animation-timing-function: linear; */
     }
 
-    select { 
+    select, button { 
         -webkit-appearance: none;
         -moz-appearance: none;
         appearance: none;
@@ -32,6 +32,11 @@
         padding: 1vw;
         text-align: left;
         margin-left:-0.5em;
+    }
+    button {
+        margin-left: 0;
+        width: 100%;
+        text-align: center;
     }
 
     .arrow {

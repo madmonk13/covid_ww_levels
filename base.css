@@ -203,3 +203,7 @@ select {
         #fff
     );
  }
+
+ #nearest {
+    display: none;
+ }

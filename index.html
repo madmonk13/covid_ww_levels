@@ -24,8 +24,9 @@
     <div class="container">
         <div class="content">
             <div>
-                <select id="state" onchange="updateStateData()"></select><span class="arrow">▼</span>
-                <select id="site" onchange="updateSiteData()"></select><span class="arrow">▼</span>
+                <select id="state" onchange="updateStateData(true)"></select><span class="arrow">▼</span>
+                <select id="site" onchange="updateSiteData(true)"></select><span class="arrow">▼</span>
+                <button id="nearest" onclick="getLocation()">Show Nearest Facility</button>
                 <hr/>
                 <div id="state_data">
                     <div id="state_location"></div>

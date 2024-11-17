@@ -7,6 +7,9 @@
         font-size: calc(15px + 0.390625vw);
         margin-bottom: 1vh;
     }
+    button {
+        margin: 0 auto;
+    }
     .arrow {
         display: none;
     }
