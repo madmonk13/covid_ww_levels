@@ -5,7 +5,7 @@
     "background_color": "#b0c4de",
     "display": "standalone",
     "Scope": "/",
-    "start_url": "/",
+    "start_url": "/covid_ww_levels/",
     "icons": [
       {
         "src": "assets/images/icon-72.png",
