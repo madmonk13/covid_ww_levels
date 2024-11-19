@@ -16,12 +16,13 @@
 
 @keyframes fadeout {
     0% { opacity: 1; }
+    66% { opacity: 1; }        
     100% { opacity: 0; }        
 }
 
 .fadeout {
     animation-name: fadeout;
-    animation-duration: 1.1s;
+    animation-duration: 3.1s;
     animation-timing-function: linear;
     animation-iteration-count: 1;
 }

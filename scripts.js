@@ -93,7 +93,7 @@ function updateSiteData(manual){
     document.getElementById("loading").className="fadeout";
     let t = setTimeout(function(){
         document.getElementById("loading").style.display="none";
-    },1000)
+    },3000)
 }
 
 function fetchStateData() {
