@@ -56,6 +56,14 @@ select {
     height: auto;
 }
 
+header {
+    background-color: white;
+  border: 2px solid red;
+  border-radius: 1vh;
+  margin: 1vh;
+  padding: 0.5vh;
+}
+
 #error {
     display: none;
     position: fixed;
