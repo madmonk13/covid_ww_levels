@@ -3,8 +3,6 @@ let covidSiteData;
 let currentState;
 let x;
 let y;
-let sites = 0;
-let noData = 0;
 
 function getLocation(){
     const successCallback = (position) => {
@@ -36,13 +34,6 @@ function populateSites(data){
 
             document.getElementById("site").appendChild(s);
         }
-        sites += 1;
-        if ( data[i].activity_level_label == "No Data" ){
-            noData += 1;
-        }
-        document.getElementById("dataHealth").innerHTML = (sites-noData)+"/"+sites;
-        document.getElementById("no_data").innerHTML = noData+"/"+sites+" sites not reporting.";
-
     }
     document.getElementById("loading_site").innerHTML = "&#128994;";
     updateSiteData();
@@ -140,6 +131,7 @@ function fetchSiteData(){
         })
         .then(data => {
                 covidSiteData = alpha(data);
+                dataHealth(data);
                 populateSites(data);
                 updateStateData();
                 findNearestSites();
@@ -231,3 +223,15 @@ function haversine(lat1, lon1, lat2, lon2) {
 }
 
 
+function dataHealth(data){
+    let sites = 0;
+    let noData = 0;   
+    for ( var i = 0; i < data.length; i++ ){
+        sites += 1;
+        if ( data[i].activity_level_label == "No Data" ){
+            noData += 1;
+        }
+    }
+    document.getElementById("dataHealth").innerHTML = (sites-noData)+"/"+sites;
+    document.getElementById("no_data").innerHTML = noData+"/"+sites+" sites not reporting.";
+}
