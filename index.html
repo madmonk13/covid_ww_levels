@@ -20,7 +20,9 @@
     <div id="loading">
         <h1>Covid-19 Wastewater Levels</h1>
         <h1 id="spinner">&#128567;</h1>
-        <h2>Loading...</h2>
+        <div class="status">Loading State Data:  <div id="loading_state">&#128993;</div></div>
+        <div class="status">Loading Site Data:  <div id="loading_site">&#128993;</div></div>
+        <div class="status">Sites reporting:  <div id="dataHealth"></div></div>
         <p>Easily find your nearest sewage treatment facility that is currently testing for presence of Covid-19 in wastewater.</p>
     </div>
     <div id="error">
@@ -56,6 +58,7 @@
             </div>
             <hr/>
             <div id="footer">
+                <div id="no_data"></div>
                 <p>Levels are on a scale of 1 to 10.<br/>
                     Data provided by CDC.gov:<br/>
                     <a href='https://www.cdc.gov/nwss/rv/COVID19-currentlevels.html'>Current Levels Data</a>,<br/>

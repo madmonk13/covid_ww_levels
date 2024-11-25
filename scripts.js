@@ -3,6 +3,8 @@ let covidSiteData;
 let currentState;
 let x;
 let y;
+let sites = 0;
+let noData = 0;
 
 function getLocation(){
     const successCallback = (position) => {
@@ -34,7 +36,15 @@ function populateSites(data){
 
             document.getElementById("site").appendChild(s);
         }
+        sites += 1;
+        if ( data[i].activity_level_label == "No Data" ){
+            noData += 1;
+        }
+        document.getElementById("dataHealth").innerHTML = (sites-noData)+"/"+sites;
+        document.getElementById("no_data").innerHTML = noData+"/"+sites+" sites not reporting.";
+
     }
+    document.getElementById("loading_site").innerHTML = "&#128994;";
     updateSiteData();
 }
 
@@ -113,6 +123,7 @@ function fetchStateData() {
         .catch(error => {
             console.error('Error getting State data.', error);
             document.getElementById("error").style.display="block";
+            document.getElementById("loading_state").innerHTML = "&#128308;";
             return
 
         });
@@ -136,6 +147,7 @@ function fetchSiteData(){
         .catch(error => {
             console.error('Error getting site data.', error);
             document.getElementById("error").style.display="block";
+            document.getElementById("loading_site").innerHTML = "&#128308;";
             return
         }
     )}
@@ -150,6 +162,7 @@ function fetchSiteData(){
             }
             document.getElementById('state').appendChild(s);
     }
+    document.getElementById("loading_state").innerHTML = "&#128994;";
 }
 
 function findNearestSites(){
@@ -216,3 +229,5 @@ function haversine(lat1, lon1, lat2, lon2) {
     const distance = R * c;   
     return Math.round(distance*100)/100;
 }
+
+
