@@ -233,5 +233,5 @@ function dataHealth(data){
         }
     }
     document.getElementById("dataHealth").innerHTML = (sites-noData)+"/"+sites;
-    document.getElementById("no_data").innerHTML = noData+"/"+sites+" sites not reporting.";
+    document.getElementById("no_data").innerHTML = noData+" out of "+sites+" sites not reporting.";
 }
