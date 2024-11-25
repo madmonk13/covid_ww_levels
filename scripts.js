@@ -224,14 +224,20 @@ function haversine(lat1, lon1, lat2, lon2) {
 
 
 function dataHealth(data){
+    let noDataSites = [];
     let sites = 0;
     let noData = 0;   
     for ( var i = 0; i < data.length; i++ ){
         sites += 1;
         if ( data[i].activity_level_label == "No Data" ){
             noData += 1;
+            if ( noDataSites.indexOf(data[i].State) == -1 ){
+                noDataSites.push(data[i].State)
+            }
         }
+
     }
+    // console.log(noDataSites);
     document.getElementById("dataHealth").innerHTML = (sites-noData)+"/"+sites;
     document.getElementById("no_data").innerHTML = noData+" out of "+sites+" sites not reporting.";
 }
