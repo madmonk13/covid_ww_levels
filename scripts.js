@@ -73,7 +73,12 @@ function updateSiteData(manual){
     for ( var i in covidSiteData ){
         if ( site == covidSiteData[i].sewershed ){
             document.getElementById("site_location").innerHTML = covidSiteData[i].counties + ", " + covidSiteData[i].State;
-            document.getElementById("site_level").innerHTML = covidSiteData[i].activity_level;
+            if ( covidSiteData[i].activity_level_label == "No Data" ){
+                document.getElementById("site_level").innerHTML = "&#9888;&#65039;";
+            }
+            else {
+                document.getElementById("site_level").innerHTML = covidSiteData[i].activity_level;
+            }
             document.getElementById("site_level").className = "guage_"+covidSiteData[i].activity_level;
             document.getElementById("site_desc").innerHTML = covidSiteData[i].activity_level_label;
             if ( x === undefined && y === undefined ){

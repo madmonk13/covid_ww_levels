@@ -103,6 +103,11 @@ header {
     background-color: green;
  }
 
+ .level_0 { 
+    color: #666;
+    background-color: white;
+ }
+
  .guage_10 {
     background-image: conic-gradient(
         at 50% 100%,

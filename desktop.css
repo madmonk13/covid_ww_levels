@@ -1,6 +1,6 @@
 @media (min-width:801px)  {
     body {
-        font-size: calc(15px + 0.390625vw);
+        font-size: calc(1vw + 0.390625vw);
         background-color: #666;
     }
     select {
