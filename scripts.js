@@ -25,11 +25,11 @@ function populateSites(data){
     if ( data == undefined ){ data = covidSiteData; }
     document.getElementById("site").innerHTML = "";
     for ( var i in alpha(data) ){
-        if ( currentState == data[i].State ){
+        if ( currentState == data[i]['State/Territory'] ){
             let s = document.createElement("option");
-                if (data[i].sewershed != null ){
-                    s.value = data[i].sewershed;
-                    s.innerHTML = data[i].counties + " (" +data[i].sewershed+ ")";
+                if (data[i].Sewershed_ID != null ){
+                    s.value = data[i].Sewershed_ID	;
+                    s.innerHTML = data[i].Counties_Served + " (" +data[i].Sewershed_ID	+ ")";
                 }
 
             document.getElementById("site").appendChild(s);
@@ -45,8 +45,8 @@ function updateStateData(manual){
     }
     let state = document.getElementById("state").value;
     for ( var i in covidStateData ){
-        if ( state == covidStateData[i].State ){
-            document.getElementById("state_location").innerHTML = covidStateData[i].State + ", Statewide";
+        if ( state == covidStateData[i]['State/Territory'] ){
+            document.getElementById("state_location").innerHTML = covidStateData[i]['State/Territory'] + ", Statewide";
             if ( isNaN(parseInt(covidStateData[i].activity_level)) ){
                 document.getElementById("state_level").innerHTML = "&#128683;";
                 document.getElementById("state_level").className = "not_available";
@@ -57,9 +57,9 @@ function updateStateData(manual){
                 document.getElementById("state_level").className = "guage_"+covidStateData[i].activity_level;
                 document.getElementById("state_desc").className = "level_"+covidStateData[i].activity_level;
             }
-            document.getElementById("state_desc").innerHTML = covidStateData[i].activity_level_label;
-            document.getElementById("state_sites").innerHTML = "Based on results from "+covidStateData[i].num_sites+" total sites.";
-            document.getElementById("state_date").innerHTML = covidStateData[i].time_period_map;
+            document.getElementById("state_desc").innerHTML = covidStateData[i].WVAL_Category;
+            document.getElementById("state_sites").innerHTML = "Based on results from "+covidStateData[i].Number_of_Sites+" total sites.";
+            document.getElementById("state_date").innerHTML = covidStateData[i].Time_Period;
         }
     }
     populateSites();
@@ -71,16 +71,16 @@ function updateSiteData(manual){
     }
     let site = document.getElementById("site").value;
     for ( var i in covidSiteData ){
-        if ( site == covidSiteData[i].sewershed ){
-            document.getElementById("site_location").innerHTML = covidSiteData[i].counties + ", " + covidSiteData[i].State;
+        if ( site == covidSiteData[i].Sewershed_ID ){
+            document.getElementById("site_location").innerHTML = covidSiteData[i].Counties_Served + ", " + covidSiteData[i]['State/Territory'];
             if ( covidSiteData[i].activity_level_label == "No Data" ){
-                document.getElementById("site_level").innerHTML = "&#9888;&#65039;";
+                document.getElementById("site_level").innerHTML = "";
             }
             else {
                 document.getElementById("site_level").innerHTML = covidSiteData[i].activity_level;
             }
             document.getElementById("site_level").className = "guage_"+covidSiteData[i].activity_level;
-            document.getElementById("site_desc").innerHTML = covidSiteData[i].activity_level_label;
+            document.getElementById("site_desc").innerHTML = covidSiteData[i].WVAL_Category;
             if ( x === undefined && y === undefined ){
                 document.getElementById("site_distance").style.display = "none";
             }
@@ -92,7 +92,7 @@ function updateSiteData(manual){
 
             }
 
-            document.getElementById("site_date").innerHTML = covidSiteData[i].time_period_map;
+            document.getElementById("site_date").innerHTML = covidSiteData[i].Reporting_Week;
             document.getElementById("site_desc").className = "level_"+covidSiteData[i].activity_level;
         }
     }
@@ -152,9 +152,9 @@ function fetchSiteData(){
     function populateStates(data){
     for ( var i in data ){
         let s = document.createElement("option");
-            s.value=data[i].State;
-            s.innerHTML=data[i].State;
-            if ( currentState == data[i].State ){
+            s.value=data[i]['State/Territory'];
+            s.innerHTML=data[i]['State/Territory'];
+            if ( currentState == data[i]['State/Territory'] ){
                 s.selected = true;
             }
             document.getElementById('state').appendChild(s);
@@ -177,9 +177,9 @@ function findNearestSites(){
             closestDistance = currentDistance;
         }
     }
-    document.getElementById("state").value = closest.State;
+    document.getElementById("state").value = closest['State/Territory'];
     updateStateData();
-    document.getElementById("site").value = closest.sewershed;
+    document.getElementById("site").value = closest.Sewershed_ID;
     updateSiteData();
     covidSiteData.sort((a, b) => {
         if (a.distance < b.distance) {
@@ -203,10 +203,10 @@ function calculateDistance(point1, point2) {
 
 function alpha(arr){
     return arr.sort((a, b) => {
-        if (a.counties < b.counties) {
+        if (a.Counties_Served < b.Counties_Served) {
           return -1;
         }
-        if (a.counties > b.counties ) {
+        if (a.Counties_Served > b.Counties_Served ) {
           return 1;
         }
         return 0;
@@ -234,15 +234,17 @@ function dataHealth(data){
     let noData = 0;   
     for ( var i = 0; i < data.length; i++ ){
         sites += 1;
-        if ( data[i].activity_level_label == "No Data" ){
+        if ( data[i].WVAL_Category == "No Data" ){
             noData += 1;
-            if ( noDataSites.indexOf(data[i].State) == -1 ){
-                noDataSites.push(data[i].State)
+            if ( noDataSites.indexOf(data[i]['State/Territory']) == -1 ){
+                noDataSites.push(data[i]['State/Territory'])
             }
         }
 
     }
     // console.log(noDataSites);
     document.getElementById("dataHealth").innerHTML = (sites-noData)+"/"+sites;
-    document.getElementById("no_data").innerHTML = noData+" out of "+sites+" sites not reporting.";
+    if ( noData >= 1 ){
+        document.getElementById("no_data").innerHTML = noData+" out of "+sites+" sites returning 'No Data'.";
+    }
 }
