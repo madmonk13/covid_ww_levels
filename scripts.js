@@ -20,7 +20,7 @@ function getLocation(){
 }
 
 
-function populateSites(data){
+function populateSites(data,set){
     currentState = document.getElementById("state").value;
     if ( data == undefined ){ data = covidSiteData; }
     document.getElementById("site").innerHTML = "";
@@ -36,6 +36,9 @@ function populateSites(data){
         }
     }
     document.getElementById("loading_site").innerHTML = "&#128994;";
+    if ( set != undefined ){
+        document.getElementById("site").value = set;
+    }
     updateSiteData();
 }
 
@@ -81,6 +84,12 @@ function updateSiteData(manual){
             }
             document.getElementById("site_level").className = "guage_"+covidSiteData[i].activity_level;
             document.getElementById("site_desc").innerHTML = covidSiteData[i].WVAL_Category;
+            if ( covidSiteData[i].WVAL_Category == "No Data" ){
+                document.getElementById("find_nearest").style.display = "block";
+            }
+            else {
+                document.getElementById("find_nearest").style.display = "none";
+            }
             if ( x === undefined && y === undefined ){
                 document.getElementById("site_distance").style.display = "none";
             }
@@ -100,7 +109,7 @@ function updateSiteData(manual){
     let t = setTimeout(function(){
         document.getElementById("loading").style.display="none";
     },3000)
-}
+ }
 
 function fetchStateData() {
     const url = 'https://www.cdc.gov/wcms/vizdata/NCEZID_DIDRI/NWSSStateMap.json';
@@ -192,7 +201,7 @@ function findNearestSites(){
       });
 
     // return closest;
-
+    setFromCookie();
 }
 
 function calculateDistance(point1, point2) {
@@ -246,5 +255,40 @@ function dataHealth(data){
     document.getElementById("dataHealth").innerHTML = (sites-noData)+"/"+sites;
     if ( noData >= 1 ){
         document.getElementById("no_data").innerHTML = noData+" out of "+sites+" sites returning 'No Data'.";
+    }
+}
+
+function goToNextData() {
+    for ( var i = 0; i < covidSiteData.length; i++ ){
+        if ( covidSiteData[i].WVAL_Category != "No Data" ){
+            console.log(covidSiteData[i].Sewershed_ID)
+            document.getElementById("state").value = covidSiteData[i]['State/Territory'];
+            populateSites(undefined,covidSiteData[i].Sewershed_ID);
+            return
+        }
+    }
+}
+
+function setDefaultSite(){
+    if ( document.getElementById("myDefault").checked == true ){
+        let state = document.getElementById('state').value
+        let site = document.getElementById('site').value
+        console.log(state,site);
+        document.cookie = state+"|"+site;    
+    }
+    else {
+        document.cookie = "null";
+    }
+}
+
+function setFromCookie(){
+    let parts = document.cookie.split("|");
+    if ( parts.length == 2 ){
+        document.getElementById('state').value = parts[0];
+        updateStateData();
+        populateSites();
+        document.getElementById('site').value = parts[1];
+        updateSiteData();
+        document.getElementById("myDefault").checked = true;
     }
 }

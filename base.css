@@ -73,6 +73,10 @@ header {
     display: inline;
 }
 
+div label {
+    line-height: 4vh;
+}
+
 #error {
     display: none;
     position: fixed;
