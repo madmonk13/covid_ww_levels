@@ -268,17 +268,17 @@ function goToNextData() {
     }
 }
 
-function setDefaultSite(){
-    if ( document.getElementById("myDefault").checked == true ){
-        let state = document.getElementById('state').value
-        let site = document.getElementById('site').value
-        console.log(state,site);
-        document.cookie = state+"|"+site;    
-    }
-    else {
-        document.cookie = "null";
-    }
-}
+// function setDefaultSite(){
+//     if ( document.getElementById("myDefault").checked == true ){
+//         let state = document.getElementById('state').value
+//         let site = document.getElementById('site').value
+//         console.log(state,site);
+//         document.cookie = state+"|"+site;    
+//     }
+//     else {
+//         document.cookie = "null";
+//     }
+// }
 
 function setFromCookie(){
     let parts = document.cookie.split("|");
