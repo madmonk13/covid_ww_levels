@@ -41,7 +41,7 @@
             <div>
                 <select id="state" onchange="updateStateData(true)"></select><span class="arrow">▼</span>
                 <select id="site" onchange="updateSiteData(true)"></select><span class="arrow">▼</span>
-                <button id="nearest" onclick="getLocation()">Show Nearest Facility</button>
+                <button id="nearest" onclick="goToClosest()">Show Nearest Facility</button>
                 <hr/>
                 <div id="state_data">
                     <div id="state_location"></div>
@@ -55,7 +55,7 @@
                     <div id="site_location"></div>
                     <div id="site_level"></div>
                     <div id="site_desc"></div>
-                    <button id="find_nearest" onclick="goToNextData()">Find Nearest with Data</button>
+                    <!-- <button id="find_nearest" onclick="goToNextData()">Find Nearest with Data</button> -->
                     <div id="site_date"></div>
                     <div id="site_distance"></div>
                     <input type="checkbox" id="myDefault" onclick="setDefaultSite()">

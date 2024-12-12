@@ -1,6 +1,7 @@
 let covidStateData;
 let covidSiteData;
 let currentState;
+let closestSite;
 let x;
 let y;
 
@@ -84,19 +85,18 @@ function updateSiteData(manual){
             }
             document.getElementById("site_level").className = "guage_"+covidSiteData[i].activity_level;
             document.getElementById("site_desc").innerHTML = covidSiteData[i].WVAL_Category;
-            if ( covidSiteData[i].WVAL_Category == "No Data" ){
-                document.getElementById("find_nearest").style.display = "block";
-            }
-            else {
-                document.getElementById("find_nearest").style.display = "none";
-            }
+            // if ( covidSiteData[i].WVAL_Category == "No Data" ){
+            //     document.getElementById("find_nearest").style.display = "block";
+            // }
+            // else {
+            //     document.getElementById("find_nearest").style.display = "none";
+            // }
             if ( x === undefined && y === undefined ){
                 document.getElementById("site_distance").style.display = "none";
             }
             else {
                 document.getElementById("site_distance").innerHTML = "Treatment site roughly "+
-                haversine(x,y,covidSiteData[i].longitude,covidSiteData[i].latitude)+
-                " miles away.";
+                covidSiteData[i].distance+" miles away.";
                 document.getElementById("site_distance").style.display = "block";
 
             }
@@ -175,21 +175,11 @@ function findNearestSites(){
     if ( x === undefined && y === undefined ){
         return
     }
-    let closest = covidSiteData[0];
-    let closestDistance = calculateDistance([x,y], [closest.longitude,closest.latitude]);
 
     for ( var i in covidSiteData ) {
-        let currentDistance = calculateDistance([x,y], [covidSiteData[i].longitude,covidSiteData[i].latitude]);
-        covidSiteData[i].distance = currentDistance;
-        if (currentDistance < closestDistance) {
-            closest = covidSiteData[i];
-            closestDistance = currentDistance;
-        }
+        let current = covidSiteData[i];
+        covidSiteData[i].distance = haversine(x,y,current.longitude,current.latitude);
     }
-    document.getElementById("state").value = closest['State/Territory'];
-    updateStateData();
-    document.getElementById("site").value = closest.Sewershed_ID;
-    updateSiteData();
     covidSiteData.sort((a, b) => {
         if (a.distance < b.distance) {
           return -1;
@@ -198,10 +188,20 @@ function findNearestSites(){
           return 1;
         }
         return 0;
-      });
+    });
 
-    // return closest;
+    closestSite = covidSiteData[0];
+    goToClosest();
     setFromCookie();
+
+}
+
+function goToClosest(){
+    document.getElementById("state").value = closestSite['State/Territory'];
+    updateStateData();
+    populateSites();
+    document.getElementById("site").value = closestSite.Sewershed_ID;
+    updateSiteData();
 }
 
 function calculateDistance(point1, point2) {
@@ -251,7 +251,6 @@ function dataHealth(data){
         }
 
     }
-    // console.log(noDataSites);
     document.getElementById("dataHealth").innerHTML = (sites-noData)+"/"+sites;
     if ( noData >= 1 ){
         document.getElementById("no_data").innerHTML = noData+" out of "+sites+" sites returning 'No Data'.";
