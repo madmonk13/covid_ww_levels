@@ -31,7 +31,7 @@
         margin: 0;
     }
     .container {
-        width: 90vw;
+        width: 60vw;
         max-width: 800px;
         padding: 1em;
         border-radius: 1em;
@@ -62,8 +62,8 @@
         font-weight: bold;
         border-radius: 150px 150px 0 0;
         width: 50%;
-        height: 1.75em;
-        line-height: 2em;
+        height: 1.25em;
+        line-height: 1.35em;
         display: block;
         margin: 0.3em auto;
         filter: drop-shadow(0em 0.05em 0.05em #aaa);
@@ -73,7 +73,7 @@
     
     #state_desc, #site_desc {
         width: 50%;
-        font-size: 1.5em;
+        font-size: 1.25em;
         font-weight: bold;
         padding: 0.25em;
         text-transform: uppercase;
