@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Covid-19 Wastewater Level</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#b0c4de">
+    <meta name="apple-mobile-web-app-title" content="Covid WW Levels">
+    <link rel="apple-touch-icon" href="/assets/images/icon-72.png" sizes="72x72">
+    <link rel="apple-touch-icon" href="/assets/images/icon-512.png" sizes="512x512">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
+    <link rel="manifest" href="manifest.json" />
+    <link rel="stylesheet" type="text/css" href="base.css" />
+    <link rel="stylesheet" type="text/css" href="desktop.css" />
+    <link rel="stylesheet" type="text/css" href="portrait.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Covid19 Wastewater Levels</title>
+    <script src="scripts.js"></script>
+</head>
+<body onload="init()">
+    <div id="loading">
+        <h1>Covid-19 Wastewater Levels</h1>
+        <h1 id="spinner">&#128567;</h1>
+        <div class="status">Loading State Data:  <div id="loading_state">&#128993;</div></div>
+        <div class="status">Loading Site Data:  <div id="loading_site">&#128993;</div></div>
+        <div class="status">Sites reporting:  <div id="dataHealth"></div></div>
+        <p>Select a state and treatment facility to see the current level of Covid-19 detected in wastewater.</p>
+    </div>
+    <div id="error">
+        <h2>Unable to retrieve data from CDC.GOV</h2>
+        <h1>&#9888;&#65039;</h1>
+        <h3>Please try again later.</h3>
+        <p>Note:  The data is sourced from the CDC's National Wastewater Surveillance System open-data feed, which may occasionally be unavailable.</p>
+    </div>
+    <div class="container">
+        <div class="content">
+            <!-- <header>
+                NOTICE:  The data format fromt the CDC has appeared to have changed on 12/2/2024.  I am currently updating the application to parse the new format.
+            </header> -->
+            <div>
+                <select id="state" onchange="updateStateData(true)"></select><span class="arrow">▼</span>
+                <select id="site" onchange="updateSiteData(true)"></select><span class="arrow">▼</span>
+                <div><button id="locate" onclick="locateUser()">📍 Use My Location</button></div>
+                <div id="geo_status"></div>
+                <hr/>
+                <div id="state_data">
+                    <div id="state_location"></div>
+                    <div id="state_level"></div>
+                    <div id="state_desc"></div>
+                    <div id="state_date"></div>
+                    <div id="state_sites"></div>
+                </div>
+                <hr/>
+                <div id="site_data">
+                    <div id="site_location"></div>
+                    <div id="site_level"></div>
+                    <div id="site_desc"></div>
+                    <!-- <button id="find_nearest" onclick="goToNextData()">Find Nearest with Data</button> -->
+                    <div id="site_date"></div>
+                    <div id="site_distance"></div>
+                    <!-- <input type="checkbox" id="myDefault" onclick="setDefaultSite()"> -->
+                    <!-- <label for="myDefault">Set as my default site</label> -->
+                </div>
+            </div>
+            <hr/>
+            <div id="footer">
+                <p><span id="no_data"></span></p>
+                <p>Levels are on a scale of 1 to 10.<br/>
+                    Data provided by CDC.gov:<br/>
+                    <a href='https://data.cdc.gov/Public-Health-Surveillance/CDC-Wastewater-Viral-Activity-Level-for-SARS-CoV-2/atcp-73re'>NWSS Wastewater Viral Activity Level</a>,<br/>
+                    <a href="https://www.cdc.gov/wastewater">CDC Wastewater Monitoring</a>.<br/>
+                    Statewide values are the median of that state's reporting sites for the latest week.<br/>
+                    <a href="index.html">Flu, RSV &amp; COVID levels near you ▸</a><br/>
+                    Source code available on <a href="https://github.com/madmonk13/covid_ww_levels">GitHub</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
