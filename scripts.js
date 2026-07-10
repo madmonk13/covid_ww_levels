@@ -307,18 +307,31 @@ function setFromCookie() {
 
 // --- Geolocation: find and select the site serving the user's county ---------
 
+// Toggle the "Use My Location" button into a clear locating state so a slow
+// browser location lookup never looks like a frozen page.
+function setLocating(on) {
+    const btn = document.getElementById('locate');
+    if (!btn) return;
+    btn.disabled = on;
+    btn.textContent = on ? '⏳ Locating…' : '📍 Use My Location';
+}
+
 // Ask the browser for the user's location, then look up their county.
 function locateUser() {
     if (!navigator.geolocation) return;
     const note = document.getElementById('geo_status');
-    if (note) note.innerHTML = 'Locating…';
+    setLocating(true);
+    if (note) note.innerHTML = 'Finding your area…';
     navigator.geolocation.getCurrentPosition(
         pos => geocodeCounty(pos.coords.longitude, pos.coords.latitude),
         err => {
             console.log('Geolocation unavailable:', err && err.message);
-            if (note) note.innerHTML = '';
+            setLocating(false);
+            if (note) note.innerHTML =
+                err && err.code === 1 ? 'Location permission denied — choose a state and site above.' : '';
         },
-        { timeout: 10000 }
+        // Fast, low-power fix; accept a cached position up to 10 min old.
+        { enableHighAccuracy: false, timeout: 8000, maximumAge: 600000 }
     );
 }
 
@@ -341,16 +354,18 @@ function geocodeCounty(lon, lat) {
         done = true;
         clearTimeout(timer);
         cleanup();
+        setLocating(false);
         console.log('County lookup failed:', msg);
         if (note) note.innerHTML = '';
     };
-    const timer = setTimeout(() => fail('timeout'), 10000);
+    const timer = setTimeout(() => fail('timeout'), 8000);
 
     window[cbName] = (data) => {
         if (done) return;
         done = true;
         clearTimeout(timer);
         cleanup();
+        setLocating(false);
         try {
             const counties = data && data.result && data.result.geographies &&
                 data.result.geographies.Counties;
